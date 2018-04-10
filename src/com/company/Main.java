@@ -2,6 +2,7 @@ package com.company;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static java.lang.Integer.parseInt;
@@ -226,6 +227,52 @@ public class Main {
             if (contenu.equals(div))Bdiv=true;
             if (contenu.equals(fois))Bfois=true;
         }
+
+        ArrayList<String> calculette = new ArrayList<>();
+        for (int i = 0; i < args.length; i++) {
+            calculette.add(args[i]);
+        }
+        for (int i = 0; i < calculette.size(); i++) {
+            System.out.println(calculette.get(i));
+        }
+        int ct=0;
+        while (ct<calculette.size()){
+            if (calculette.get(ct).equals("/")){
+                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))/Integer.parseInt(calculette.get(ct+1)))) ;
+                calculette.remove(ct);
+                calculette.remove(ct);
+                ct--;
+
+            }
+            if (calculette.get(ct).equals("*")){
+                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))*Integer.parseInt(calculette.get(ct+1)))) ;
+                calculette.remove(ct);
+                calculette.remove(ct);
+                ct--;
+            }
+            ct++;
+        }
+
+         ct=0;
+        while (ct<calculette.size()){
+            if (calculette.get(ct).equals("+")){
+                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))+Integer.parseInt(calculette.get(ct+1)))) ;
+                calculette.remove(ct);
+                calculette.remove(ct);
+                ct--;
+
+            }
+            if (calculette.get(ct).equals("-")){
+                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))-Integer.parseInt(calculette.get(ct+1)))) ;
+                calculette.remove(ct);
+                calculette.remove(ct);
+                ct--;
+
+            }
+            ct++;
+        }
+
+        System.out.println("Résultat : "+Integer.parseInt(calculette.get(0)));
 
         counter1 = null ;
         counter2 = null ;
