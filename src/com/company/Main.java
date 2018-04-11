@@ -2,7 +2,6 @@ package com.company;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import static java.lang.Integer.parseInt;
@@ -165,120 +164,19 @@ public class Main {
 
         System.out.println("\n");
 
-        Counter c1 = new Counter(2,10);
-        Counter c2 = new Counter(22);
-        Counter c3 = new Counter();
-        c3.init(4,8+12);
-        c3.count();c3.count();
-        System.out.println("counter 1 position :"+c1.position+"  step : "+c1.step);
-        System.out.println("counter 2 position :"+c2.position+"  step : "+c2.step);
-        System.out.println("counter 3 changement objet -> position :"+c3.position+"  step : "+c3.step);
-        System.out.println("counter 3 consulte objet   -> position :"+c3.getPosition());
 
-        Counter counter1 = new Counter();
-        Counter counter2 = counter1;
-        counter1.position = 10 ;
-        if(counter1.position == counter2.position){
-            System.out.println("egalite instance de classe");
-        }
 
-        String plus = "+";
-        String moins = "-";
-        String egal = "=";
-        String fois = "*";
-        String div = "/";
 
-        boolean Bplus = false;
-        boolean Bmoins = false;
-        boolean Bfois = false;
-        boolean Bdiv = false;
-        //int m = Integer.parseInt("+");
-        int valeur =Integer.parseInt(args[0]);
-        System.out.print(valeur+" ");
-        for (int i = 1; i <args.length ; i++) {
-            String contenu = args[i];
+        System.out.println("Calculette avec priorité");
+        Calculatrice calcul = new Calculatrice(true,args);
+        calcul.printResultat();
+        System.out.println("Calculette sans priorité");
+        Calculatrice calcul2 = new Calculatrice(false,args);
+        calcul2.printResultat();
 
-            if (contenu.equals(egal)){
-                System.out.println("\nRésultat calculettte : "+valeur);
-            }else {
-                System.out.print(args[i]+" ");
-            }
 
-            if (Bplus==true){
-                valeur+=Integer.parseInt(args[i]);
-                Bplus=false;
 
-            }
-            if (Bdiv==true){
-                valeur=valeur/Integer.parseInt(args[i]);
-                Bdiv=false;
-            }
-
-            if (Bfois==true){
-                valeur=valeur*Integer.parseInt(args[i]);
-                Bfois=false;
-            }
-            if (Bmoins==true){
-                valeur= valeur-Integer.parseInt(args[i]);
-                Bmoins=false;
-            }
-            if(contenu.equals(plus)) Bplus=true;
-            if (contenu.equals(moins))Bmoins=true;
-            if (contenu.equals(div))Bdiv=true;
-            if (contenu.equals(fois))Bfois=true;
-        }
-
-        ArrayList<String> calculette = new ArrayList<>();
-        for (int i = 0; i < args.length; i++) {
-            calculette.add(args[i]);
-        }
-        for (int i = 0; i < calculette.size(); i++) {
-            System.out.println(calculette.get(i));
-        }
-        int ct=0;
-        while (ct<calculette.size()){
-            if (calculette.get(ct).equals("/")){
-                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))/Integer.parseInt(calculette.get(ct+1)))) ;
-                calculette.remove(ct);
-                calculette.remove(ct);
-                ct--;
-
-            }
-            if (calculette.get(ct).equals("*")){
-                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))*Integer.parseInt(calculette.get(ct+1)))) ;
-                calculette.remove(ct);
-                calculette.remove(ct);
-                ct--;
-            }
-            ct++;
-        }
-
-         ct=0;
-        while (ct<calculette.size()){
-            if (calculette.get(ct).equals("+")){
-                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))+Integer.parseInt(calculette.get(ct+1)))) ;
-                calculette.remove(ct);
-                calculette.remove(ct);
-                ct--;
-
-            }
-            if (calculette.get(ct).equals("-")){
-                calculette.set(ct-1,String.valueOf(Integer.parseInt(calculette.get(ct-1))-Integer.parseInt(calculette.get(ct+1)))) ;
-                calculette.remove(ct);
-                calculette.remove(ct);
-                ct--;
-
-            }
-            ct++;
-        }
-
-        System.out.println("Résultat : "+Integer.parseInt(calculette.get(0)));
-
-        counter1 = null ;
-        counter2 = null ;
-        c1 = null ;
-        c2 = null ;
-        c3 = null ;
+      
         couleur = null ;
         array = null ;
         array2 = null ;
